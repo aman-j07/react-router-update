@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
-const UserContext=createContext()
+// separate used for storing logged in user details
+const UserContext = createContext();
 
-export default UserContext
+export default UserContext;

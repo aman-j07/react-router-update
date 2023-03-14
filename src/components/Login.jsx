@@ -1,36 +1,47 @@
-import React, {useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "./Parent";
 
 function Login() {
   const navigate = useNavigate();
+  const { state, setState } = useContext(AppContext);
+  
+  // an object to display any messages to user as an alert
+  const [msg, setMsg] = useState({ type: "", value: "" });
 
   const refSignInps = useRef({
     email: null,
     password: null,
   });
 
+  //fn to let a user sign in 
   const signIn = (e) => {
     e.preventDefault();
     let email = refSignInps.current.email.value;
     let password = refSignInps.current.password.value;
-    if (email === "user@gmail.com" && password === "12345") {
-      alert("Sign in successfully");
-      navigate("/");
 
-      let user = {
-        email,
-        password,
-      };
-
-      // setState({ ...state, user });
+    let found = state.users.find((ele) => ele.email === email);
+    if (found !== undefined) {
+      if (found.password === password) {
+        setMsg({ value: "Sign In successful", type: "success" });
+        setState({ ...state, user: found });
+        navigate("/");
+      } else {
+        setMsg({ value: "Password did not match!", type: "danger" });
+      }
     } else {
-      alert("Enter right credentials");
+      setMsg({ value: "User Not found!", type: "danger" });
     }
   };
 
   return (
     <>
       <div className="signin mx-auto card p-4 my-4 border-0">
+        {msg.value !== "" && (
+          <span className={`alert alert-${msg.type} shorttxt`} role="alert">
+            {msg.value}
+          </span>
+        )}
         <h4 className="card-title">Log In</h4>
         <form
           className="mt-2"
@@ -60,9 +71,10 @@ function Login() {
             Log In
           </button>
         </form>
-        <p className="my-2">
-          Email: user@gmail.com <br /> Password: 12345
-        </p>
+        <span className="d-flex align-items-center mt-3 gap-1">
+          New user?
+          <Link to="/signup">Sign Up</Link>
+        </span>
       </div>
     </>
   );

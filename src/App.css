@@ -1,26 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
 
 .App {
-  background: #f6f9ff;
-  min-height: 100vh;
-  font-family: 'Assistant', sans-serif;
+    background: #f6f9ff;
+    min-height: 100vh;
+    font-family: 'Assistant', sans-serif;
 }
 
 .shorttxt {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .vshorttxt {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 button:hover {
-  filter: brightness(1.1);
-  cursor: pointer;
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+.header {
+  z-index: 1;
 }
 
 .signin {
-  min-width: 310px;
-  width: 30%;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    min-width: 310px;
+    width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.product {
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+}
+
+.product__pic {
+    height: 180px;
+    max-width: 100px;
+    max-width: 100%;
+    margin: auto;
+}
+
+.product__rating {
+    position: absolute;
+    top: 150px;
+    right: 10px;
+}
+
+.product__btncta {
+    background-color: #2b85ff;
+    color: white;
+    font-weight: 600;
 }
