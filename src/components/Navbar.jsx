@@ -18,7 +18,7 @@ function NavBar() {
               <li>
                 <Link
                   className="text-decoration-none text-dark position-relative"
-                  to="/profile"
+                  to="/auth/profile"
                 >
                   Profile
                 </Link>
@@ -26,7 +26,7 @@ function NavBar() {
               <li>
                 <Link
                   className="text-decoration-none text-dark position-relative"
-                  to="/settings"
+                  to="/auth/settings"
                 >
                   Settings
                 </Link>

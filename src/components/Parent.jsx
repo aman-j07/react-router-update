@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import Home from "./Home";
@@ -42,20 +42,22 @@ function Parent() {
           element: <Signup />,
         },
         {
-          path: "/profile",
+          path: "/auth",
           element: (
             <ProtectedRoute>
-              <Profile />
+              <Outlet />
             </ProtectedRoute>
           ),
-        },
-        {
-          path: "/settings",
-          element: (
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          ),
+          children: [
+            {
+              path: "/auth/profile",
+              element: <Profile />,
+            },
+            {
+              path: "/auth/settings",
+              element: <Settings />,
+            },
+          ],
         },
       ],
     },
